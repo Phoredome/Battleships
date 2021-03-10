@@ -1,7 +1,7 @@
 package com.battleships.controller;
 
 import com.battleships.model.Board;
-import com.battleships.view.IWindow;
+import com.battleships.gui.IWindow;
 
 public class GameManager {
     Board player;

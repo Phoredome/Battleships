@@ -1,4 +1,4 @@
-package com.battleships.view;
+package com.battleships.gui;
 
 public interface IWindow {
     int LEFT_BOARD = 0;
