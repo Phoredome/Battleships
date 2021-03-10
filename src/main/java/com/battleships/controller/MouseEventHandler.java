@@ -1,4 +1,4 @@
-package com.battleships.gui;
+package com.battleships.controller;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-public class BattleshipGUI_sho  extends JFrame {
+public class MouseEventHandler extends JFrame {
     int distance = 3;
 
     public int x;
@@ -14,7 +14,8 @@ public class BattleshipGUI_sho  extends JFrame {
     private int cellWidth=50;
     private int cellHeight=60;
 
-    public BattleshipGUI_sho() {
+    public MouseEventHandler() {
+        //Renamed
         this.setTitle("Battleship");
         this.setSize(700, 500);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

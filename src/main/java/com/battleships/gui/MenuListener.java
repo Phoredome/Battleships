@@ -1,5 +1,7 @@
 package com.battleships.gui;
 
+import com.battleships.controller.MouseEventHandler;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,7 +22,7 @@ public class MenuListener implements ActionListener {
 //            BattleshipGUI paly=new BattleshipGUI(10,700,500);
 
             //Add sho code
-            BattleshipGUI_sho paly=new BattleshipGUI_sho();
+            MouseEventHandler paly=new MouseEventHandler();
 
             BoardGUI.frame.setVisible(false);
             }

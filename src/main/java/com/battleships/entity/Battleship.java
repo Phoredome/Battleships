@@ -1,7 +1,5 @@
 package com.battleships.entity;
 
-import com.battleships.model.TileContent;
-
 public class Battleship {
     public static final int VERTICAL = 0;
     public static final int HORIZONTAL = 1;
@@ -66,4 +64,22 @@ public class Battleship {
         else
             return TileContent.Alive_Ship;
     }
+
+    public boolean isSunk()
+    {
+        //Check if current ship is dead
+        boolean sunk = true;
+
+        for(boolean s : sections)
+        {
+            if (!s) {
+                sunk = false;
+                break;
+            }
+        }
+
+        return sunk;
+    }
+
+
 }

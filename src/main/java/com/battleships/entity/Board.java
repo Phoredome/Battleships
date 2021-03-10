@@ -1,6 +1,4 @@
-package com.battleships.model;
-
-import com.battleships.entity.Battleship;
+package com.battleships.entity;
 
 import java.util.ArrayList;
 
@@ -21,8 +19,9 @@ public class Board {
         return boardSize;
     }
 
-    public boolean fire(int x, int y) {
-        Battleship ship;
+    public Battleship fire(int x, int y) {
+        //attempt to update ship at location and return Battleship for status update
+        Battleship ship = null;
         for (Battleship s : ships)
             if (s.existsAtTile(x, y) == TileContent.Alive_Ship) {
                 ship = s;
@@ -30,6 +29,21 @@ public class Board {
             }
 
         
-        return false;
+        return ship;
     }
+
+    public boolean allBoom ()
+    {
+        // check to see if all ships are dead
+        boolean boom = true;
+
+        for(Battleship b : ships)
+            if(!b.isSunk())
+                boom = false;
+
+        return boom;
+    }
+
+
+
 }
