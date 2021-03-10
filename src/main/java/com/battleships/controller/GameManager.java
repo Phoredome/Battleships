@@ -6,7 +6,7 @@ import com.battleships.gui.IWindow;
 
 import java.lang.reflect.InvocationTargetException;
 
-public class GameManager<T extends IWindow> {
+public class GameManager<T extends IWindow> implements IFireHandler{
     Board player;
 
     IWindow window;
@@ -20,6 +20,7 @@ public class GameManager<T extends IWindow> {
     public GameManager(int boardSize, Class<T> guiClass){
         try {
             window = guiClass.getConstructor().newInstance();
+            window.addFireHandler(this);
         }
         catch (NoSuchMethodException |
                 InstantiationException |
@@ -30,5 +31,10 @@ public class GameManager<T extends IWindow> {
         player = new Board(boardSize);
     }
 
-    
+
+    @Override
+    public void fire(int x, int y) {
+        board.fire(x, y);
+        // Do shit
+    }
 }
