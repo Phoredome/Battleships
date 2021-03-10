@@ -39,7 +39,7 @@ public class BattleshipGUI extends JFrame {
         buttonPanel.setLayout(new GridLayout(10, 10));
 
         //set buttonPanel background: /resources/static/radar.jpg
-        ImageIcon backgroundImage=new ImageIcon("C:\\Azin\\01 Douglas college\\semester 4\\Software Engineering - 3275-002\\assignments\\battleship-v3\\battleShip-v3\\src\\main\\resources\\static\\radar.jpg");
+        ImageIcon backgroundImage=new ImageIcon("./src/main/resources/static/radar.jpg");
 
         JLabel background=new JLabel("",backgroundImage,JLabel.CENTER);
         background.setBounds(0,0,500,700);
