@@ -4,9 +4,10 @@ import com.battleships.entity.Board;
 import com.battleships.gui.BattleshipGUI;
 import com.battleships.gui.IWindow;
 
-public class GameManager {
+import java.lang.reflect.InvocationTargetException;
+
+public class GameManager<T extends IWindow> {
     Board player;
-    Board computer;
 
     IWindow window;
 
@@ -16,9 +17,17 @@ public class GameManager {
     public Board board;
     public BattleshipGUI battleshipGUI;
 
-    public GameManager(int boardSize) {
+    public GameManager(int boardSize, Class<T> guiClass){
+        try {
+            window = guiClass.getConstructor().newInstance();
+        }
+        catch (NoSuchMethodException |
+                InstantiationException |
+                IllegalAccessException |
+                InvocationTargetException e) {
+
+        }
         player = new Board(boardSize);
-        computer = new Board(boardSize);
     }
 
     

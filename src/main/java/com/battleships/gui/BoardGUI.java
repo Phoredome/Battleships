@@ -1,9 +1,11 @@
 package com.battleships.gui;
 
+import com.battleships.controller.IFireHandler;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class BoardGUI extends JFrame {
+public class BoardGUI extends JFrame implements IWindow {
 
     static int gridSize;
     public static JFrame frame;
@@ -67,4 +69,23 @@ public class BoardGUI extends JFrame {
     }
 
 
+    @Override
+    public void drawHit(int x, int y) {
+
+    }
+
+    @Override
+    public void drawMiss(int x, int y) {
+
+    }
+
+    @Override
+    public void showMessage(String message) {
+
+    }
+
+    @Override
+    public void addFireHandler(IFireHandler handler) {
+
+    }
 }

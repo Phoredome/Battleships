@@ -1,8 +1,10 @@
 package com.battleships.gui;
 
-public interface IWindow {
-    int LEFT_BOARD = 0;
-    int RIGHT_BOARD = 1;
+import com.battleships.controller.IFireHandler;
 
-    void drawHit(int board, int x, int y);
+public interface IWindow {
+    void drawHit(int x, int y);
+    void drawMiss(int x, int y);
+    void showMessage(String message);
+    void addFireHandler(IFireHandler handler);
 }

@@ -1,9 +1,11 @@
 package com.battleships;
 
+import com.battleships.controller.GameManager;
 import com.battleships.gui.BoardGUI;
 
 public class BattleshipApplication {
     public static void main(String[] args) {
+        GameManager m = new GameManager(5, BoardGUI.class);
         BoardGUI board = new BoardGUI();
 
         //setSampleEnemyBoatBoard();
