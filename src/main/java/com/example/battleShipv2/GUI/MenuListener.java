@@ -11,28 +11,28 @@ public class MenuListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource()==BoardGUI.playBtn)
+        if (e.getSource()== MainMenu.playBtn)
         {
             //Battleship.resetGame();
             //Battleship.game.setVisible(true);
 
             //set main board invisible:
-//            BattleshipGUI paly=new BattleshipGUI(10,700,500);
+//            BattleshipGUI play=new BattleshipGUI(10,700,500);
 
             //Add sho code
-            BattleshipGUI paly=new BattleshipGUI();
+            DrawBoard play=new DrawBoard();
 
-            BoardGUI.frame.setVisible(false);
+            MainMenu.frame.setVisible(false);
             }
 
-        if (e.getSource()==BoardGUI.instructionBtn)
+        if (e.getSource()== MainMenu.instructionBtn)
         {
             Instructions rules=new Instructions();
         }
-        if (e.getSource()==BattleshipGUI2.backToBoardBtn)
+        if (e.getSource()== BackgroundIMG.backToBoardBtn)
         {
-            BattleshipGUI2.frame.setVisible(false);
-            BoardGUI.frame.setVisible(true);
+            BackgroundIMG.frame.setVisible(false);
+            MainMenu.frame.setVisible(true);
         }
 
     }

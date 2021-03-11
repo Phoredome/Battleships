@@ -1,12 +1,12 @@
 package com.example.battleShipv2.controller;
 
-import com.example.battleShipv2.GUI.BattleshipGUI;
-import com.example.battleShipv2.model.Board;
-import com.example.battleShipv2.GUI.IWindow;
+import com.example.battleShipv2.GUI.DrawBoard;
 import org.springframework.beans.factory.annotation.Autowired;
-
+//wtf is sho?
 public class Controller {
     public int x,y;
     @Autowired
-    BattleshipGUI gui_sho=new BattleshipGUI();
+    DrawBoard gui_sho=new DrawBoard();
+
+
 }
