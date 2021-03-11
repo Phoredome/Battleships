@@ -1,10 +1,12 @@
 package com.example.battleShipv2.GUI;
 
+import com.example.battleShipv2.controller.Controller;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+
 /*
 should be renamed to battleshipBoard or draw board
 delete mouse move
@@ -15,11 +17,8 @@ create instance of controller class to be mouse listener
 public class DrawBoard extends JFrame {
     int distance = 3;
 
-    public double x;
-    public double y;
-    private int cellWidth=50;
-    private int cellHeight=60;
-    GameBoard gameBoard = new GameBoard();
+    private final Controller controller = new Controller();
+    private final GameBoard gameBoard = new GameBoard();
     public DrawBoard() {
         this.setTitle("Battleship");
         this.setSize(700, 500);
@@ -27,7 +26,7 @@ public class DrawBoard extends JFrame {
         this.setVisible(true);
         this.setResizable(false);
 
-        
+
         this.setContentPane(gameBoard);
 
         //For listening to mouse moving
@@ -40,7 +39,7 @@ public class DrawBoard extends JFrame {
     } // End GUI constructor
 
 
-    public class GameBoard extends JPanel {
+    private static class GameBoard extends JPanel {
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
             setLayout(null);
@@ -76,21 +75,54 @@ public class DrawBoard extends JFrame {
     public class MouseClick implements MouseListener {
         @Override
         public void mouseClicked(MouseEvent e) {
-//            x = Math.abs((e.getX() - distance) / cellWidth);
-//            y = Math.abs((e.getY() - distance) / cellHeight);
-//            ImageIcon img = new ImageIcon("D:/Winter2021/Soft3275/ClassProjects/testGrid2/src/ship.png");
-//            g1.drawImage(img.getImage(), x, y,80,80, null);
-//            setVisible(true);
-//            JLabel label2 = new JLabel(img);
-//            add(label2);
-            JFrame frame = new JFrame("Show Message Dialog");
-            x = ((Math.ceil(e.getX()/100.0))*100)+50;
-            y = ((Math.ceil(e.getY()/100.0))*100)+50;
-            ImageIcon img = new ImageIcon("./src/main/resources/static/ship.png");
-            JLabel label2 = new JLabel(img);
-            gameBoard.add(label2);
-            label2.setBounds((int) x,(int) y, 80, 80);
+            int[] mousePos = { e.getX(), e.getY() };
+            int[] gridTop = { 73, 85 };
+            int titleBarOffset = 32;
+            int[] tileSize = { 69, 52 };
+            // Grid size 7
+            int[] gridBottom = {
+                    gridTop[0] + tileSize[0] * 7,
+                    gridTop[1] + tileSize[1] * 7
+            };
+
+            // Make sure mouse is in the actual grid
+            if (mousePos[0] < gridTop[0] ||
+                    mousePos[0] > gridBottom[0] ||
+                    mousePos[1] < gridTop[1] ||
+                    mousePos[1] > gridBottom[1]
+            ) return; // Ignore the mouse click
+
+            // Find the cell the mouse was clicked in
+            int x = (mousePos[0] - gridTop[0]) / tileSize[0];
+            int y = (mousePos[1] - gridTop[1]) / tileSize[1];
+            System.out.printf("Mouse clicked in cell (%d, %d)%n", x, y);
+
+            //try to register a hit in cell
+            ImageIcon img;
+            if (controller.hit(x, y))
+                img = new ImageIcon("./src/main/resources/static/ship.png");
+            else if (controller.miss(x,y))
+                img = new ImageIcon("./src/main/resources/static/miss.png");
+            else {
+                System.out.println("Cell Already Selected");
+                return;
+            }
+
+            // Draw image in proper cell
+
+            JLabel shipLabel = new JLabel(img);
+            gameBoard.add(shipLabel);
+            shipLabel.setBounds(
+                    x * tileSize[0] + gridTop[0],
+                    y * tileSize[1] + gridTop[1] - titleBarOffset,
+                    tileSize[0],
+                    tileSize[1]
+            );
             setVisible(true);
+
+            // Check if the game is won
+            if (controller.gameEnd())
+                System.out.println("Game Finished!");
         }// End mouseClicked method
 
         @Override

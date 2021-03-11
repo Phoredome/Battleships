@@ -41,29 +41,42 @@ public class Battleship {
         return false;
     }
 
-    public TileContent existsAtTile(int x, int y) {
-        // Find the section of the ship at the given coordinates.
-        // At first we don't know that the coordinates are valid for this ship
-        int section = -1;
-        // Find if this ship occupies the given tile
-        // If the ship is horizontal, the x coordinate must be equal
-        // and the y coordinate can be up to 'length' higher
-        if (orientation == HORIZONTAL &&
+    public boolean hit(int x, int y) {
+        int segment = -1;
+        if (orientation == VERTICAL &&
                 x == this.x &&
                 y >= this.y &&
-                y < (this.y + sections.length))
-            section = y - this.y;
-        else if (orientation == VERTICAL &&
+                y < this.y + sections.length)
+            segment = y - this.y;
+        else if (orientation == HORIZONTAL &&
                 y == this.y &&
                 x >= this.x &&
                 x < this.x + sections.length)
-            section = x - this.x;
-
-        if (section < 0)
-            return TileContent.Empty;
-        else if (sections[section])
-            return TileContent.Hit_Ship;
+            segment = x - this.x;
+        if (segment >= 0 && segment < sections.length && !sections[segment])
+            return sections[segment] = true;
         else
-            return TileContent.Alive_Ship;
+            return false;
+    }
+
+    public int getLength()
+    {
+        return sections.length;
+    }
+
+    public boolean existsAtTile(int x, int y) {
+        // Find the section of the ship at the given coordinates.
+        // At first we don't know that the coordinates are valid for this ship
+        // Find if this ship occupies the given tile
+        // If the ship is horizontal, the x coordinate must be equal
+        // and the y coordinate can be up to 'length' higher
+        return ((orientation == VERTICAL &&
+                x == this.x &&
+                y >= this.y &&
+                y < this.y + sections.length) ||
+                (orientation == HORIZONTAL &&
+                        y == this.y &&
+                        x >= this.x &&
+                        x < this.x + sections.length));
     }
 }

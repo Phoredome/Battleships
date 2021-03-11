@@ -11,7 +11,7 @@ public class BattleShipV2Application extends JFrame{
 
 	public static void main(String[] args) {
 
-		SpringApplication.run(BattleShipV2Application.class, args);
+		//SpringApplication.run(BattleShipV2Application.class, args);
 		MainMenu board = new MainMenu();
 
 		//setSampleEnemyBoatBoard();
