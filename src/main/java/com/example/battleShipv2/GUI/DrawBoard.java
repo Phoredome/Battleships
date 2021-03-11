@@ -104,7 +104,8 @@ public class DrawBoard extends JFrame {
             else if (controller.miss(x,y))
                 img = new ImageIcon("./src/main/resources/static/miss.png");
             else {
-                System.out.println("Cell Already Selected");
+            	JOptionPane.showMessageDialog(null, "Ship Already Hit","Warning", JOptionPane.INFORMATION_MESSAGE);
+                //System.out.println("Cell Already Selected");
                 return;
             }
 
@@ -121,8 +122,13 @@ public class DrawBoard extends JFrame {
             setVisible(true);
 
             // Check if the game is won
-            if (controller.gameEnd())
-                System.out.println("Game Finished!");
+            if (controller.gameEnd()) {
+            int option = JOptionPane.showOptionDialog(null, "Game Finished!", "Congratulations!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+            if(option == JOptionPane.OK_OPTION) {
+            	System.exit(0);
+               }
+            }
+            	//System.out.println("Game Finished!");
         }// End mouseClicked method
 
         @Override
