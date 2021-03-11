@@ -43,6 +43,11 @@ public class Controller {
         return false;
     }
 
+    public Battleship shipSunk(int x, int y)
+    {
+        return board.shipAtLocation(x,y);
+    }
+
     public boolean gameEnd()
     {
         return board.allBoom();

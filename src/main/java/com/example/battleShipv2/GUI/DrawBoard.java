@@ -99,8 +99,13 @@ public class DrawBoard extends JFrame {
 
             //try to register a hit in cell
             ImageIcon img;
-            if (controller.hit(x, y))
+            if (controller.hit(x, y)) {
                 img = new ImageIcon("./src/main/resources/static/ship.png");
+
+                //Check if Ship Sunk
+                if(controller.shipSunk(x,y).alive() == false)
+                    System.out.println("Ship Sunk");
+            }
             else if (controller.miss(x,y))
                 img = new ImageIcon("./src/main/resources/static/miss.png");
             else {
@@ -119,6 +124,7 @@ public class DrawBoard extends JFrame {
                     tileSize[1]
             );
             setVisible(true);
+
 
             // Check if the game is won
             if (controller.gameEnd())
