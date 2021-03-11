@@ -31,8 +31,8 @@ public class DrawBoard extends JFrame {
         this.setContentPane(gameBoard);
 
         //For listening to mouse moving
-        MouseMove mouseMove = new MouseMove();
-        this.addMouseMotionListener(mouseMove);
+        /*MouseMove mouseMove = new MouseMove();
+        this.addMouseMotionListener(mouseMove);*/
 
         MouseClick mouseClick = new MouseClick();
         this.addMouseListener(mouseClick);
@@ -52,7 +52,7 @@ public class DrawBoard extends JFrame {
 
     }// End GameBoard class
 
-    public class MouseMove implements MouseMotionListener {
+    /*public class MouseMove implements MouseMotionListener {
 
         @Override
         public void mouseDragged(MouseEvent e) {
@@ -71,7 +71,7 @@ public class DrawBoard extends JFrame {
         }//End mouseMoved class
 
 
-    }//End MouseMove class
+    }//End MouseMove class*/
 
     public class MouseClick implements MouseListener {
         @Override
